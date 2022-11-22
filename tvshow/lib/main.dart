@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../app.dart';
+import 'injection.dart' as di;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
 
-  runApp(const TvShowApp());
+  di.init();
+  runApp(TvShowApp());
 }
 
 class MyHttpOverrides extends HttpOverrides {
