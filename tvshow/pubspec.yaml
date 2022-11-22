@@ -1,0 +1,57 @@
+name: tvshow
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
+  bloc: ^8.0.3
+  dartz: ^0.10.1
+  dio: ^4.0.6
+  flutter_bloc: ^8.0.1
+  get: ^4.6.5
+  get_it: ^7.2.0
+  pretty_dio_logger: ^1.1.1
+  pull_to_refresh: ^2.0.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: PlayFair
+      fonts:
+        - asset: assets/font/playfair/PlayfairDisplay-Regular.ttf
+        - asset: assets/font/playfair/PlayfairDisplay-Medium.ttf
+          weight: 500
+        - asset: assets/font/playfair/PlayfairDisplay-SemiBold.ttf
+          weight: 600
+        - asset: assets/font/playfair/PlayfairDisplay-Bold.ttf
+          weight: 700 
+    - family: Poppins
+      fonts:
+        - asset: assets/font/Poppins/Poppins-Regular.ttf
+        - asset: assets/font/Poppins/Poppins-Light.ttf
+          weight: 200
+        - asset: assets/font/Poppins/Poppins-Thin.ttf
+          weight: 300
+        - asset: assets/font/Poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/font/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/font/Poppins/Poppins-Bold.ttf
+          weight: 700
+
