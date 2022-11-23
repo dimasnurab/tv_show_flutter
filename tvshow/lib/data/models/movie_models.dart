@@ -14,6 +14,7 @@ class MovieModel {
   final dynamic voteCount;
   final dynamic firstAirDate;
   final List<String> originCountry;
+  bool watchList;
 
   MovieModel({
     this.adult,
@@ -31,6 +32,7 @@ class MovieModel {
     this.voteCount,
     this.firstAirDate,
     this.originCountry = const <String>[],
+    this.watchList = false,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
@@ -57,6 +59,4 @@ class MovieModel {
                 .toList()
             : []);
   }
-
-  
 }

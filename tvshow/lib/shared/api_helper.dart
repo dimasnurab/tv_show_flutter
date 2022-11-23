@@ -34,7 +34,8 @@ class ApiHelper {
         responseJson =
             await _dio.put(path, data: _data, queryParameters: queryParams);
       } else if (method == 'DELETE') {
-        responseJson = await _dio.delete(path, queryParameters: queryParams);
+        responseJson = await _dio.delete(path,
+            data: content, queryParameters: queryParams);
       } else if (method == 'PATCH') {
         responseJson =
             await _dio.patch(path, queryParameters: queryParams, data: _data);

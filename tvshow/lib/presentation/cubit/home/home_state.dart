@@ -1,6 +1,13 @@
 part of 'home_cubit.dart';
 
-enum HomeStatusState { done, fail, loading, initial }
+enum HomeStatusState {
+  done,
+  fail,
+  loading,
+  initial,
+  loadingLogout,
+  successLogout,
+}
 
 class HomeState extends Equatable {
   HomeState({

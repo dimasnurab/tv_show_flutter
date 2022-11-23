@@ -1,6 +1,6 @@
 part of 'trendinghome_cubit.dart';
 
-enum TrendingHomeStatusState { done, loading, fail, initial }
+enum TrendingHomeStatusState { done, loading, fail, initial, loadingWatchList }
 
 class TrendinghomeState extends Equatable {
   const TrendinghomeState({

@@ -7,4 +7,5 @@ class ApiPath {
   static const String account = '/account';
   static const String authenticate = '/authenticate/';
   static const String createSession = '/authentication/session/new';
+  static const String authenticationSession = '/authentication/session';
 }

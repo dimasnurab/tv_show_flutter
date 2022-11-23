@@ -8,8 +8,10 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   SearchMovie _searchMovie;
+  DeleteSession _deleteSession;
   HomeCubit(
     this._searchMovie,
+    this._deleteSession,
   ) : super(HomeState());
 
   changeIsModeSearch(bool val) => emit(state.copyWith(
@@ -51,5 +53,16 @@ class HomeCubit extends Cubit<HomeState> {
       statusState: HomeStatusState.initial,
       token: token,
     ));
+  }
+
+  doLogout() async {
+    emit(state.copyWith(statusState: HomeStatusState.loadingLogout));
+    var r = await _deleteSession.execute();
+
+    r.fold((l) {
+      emit(state.copyWith(statusState: HomeStatusState.fail));
+    }, (r) {
+      emit(state.copyWith(statusState: HomeStatusState.successLogout));
+    });
   }
 }

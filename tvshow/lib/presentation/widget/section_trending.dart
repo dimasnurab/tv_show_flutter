@@ -10,8 +10,10 @@ import 'card_movies.dart';
 
 class SectionTrending extends StatefulWidget {
   const SectionTrending({
+    this.sessionID = '',
     Key? key,
   }) : super(key: key);
+  final String sessionID;
 
   @override
   State<SectionTrending> createState() => _SectionTrendingState();
@@ -155,20 +157,51 @@ class _SectionTrendingState extends State<SectionTrending> {
                                             ),
                                           ),
                                           SizedBox(width: 10),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 6, vertical: 2),
-                                            decoration: BoxDecoration(
-                                                color: ConstanColor.black,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: Text(
-                                              'Tambah Favourite',
-                                              style:
-                                                  TextStyleApp.poppins.copyWith(
-                                                fontSize: 14,
-                                                color: ConstanColor.white,
-                                                fontWeight: FontWeight.bold,
+                                          Visibility(
+                                            visible: widget.sessionID != ''
+                                                ? true
+                                                : false,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<TrendinghomeCubit>()
+                                                    .addWathcList(
+                                                        state.models[
+                                                            state.currentIndex],
+                                                        !state
+                                                            .models[state
+                                                                .currentIndex]
+                                                            .watchList);
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 6, vertical: 2),
+                                                decoration: BoxDecoration(
+                                                    color: ConstanColor.black,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: state.statusState ==
+                                                        TrendingHomeStatusState
+                                                            .loadingWatchList
+                                                    ? CircularProgressIndicator()
+                                                    : Text(
+                                                        state
+                                                                .models[state
+                                                                    .currentIndex]
+                                                                .watchList
+                                                            ? 'Batal Simpan'
+                                                            : 'Simpan',
+                                                        style: TextStyleApp
+                                                            .poppins
+                                                            .copyWith(
+                                                          fontSize: 14,
+                                                          color: ConstanColor
+                                                              .white,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
                                               ),
                                             ),
                                           ),

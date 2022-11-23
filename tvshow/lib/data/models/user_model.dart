@@ -23,13 +23,11 @@ class AccountModel {
     this.token,
   });
 
-  factory AccountModel.fromJson(Map<String, dynamic> json, {dynamic token}) =>
-      AccountModel(
+  factory AccountModel.fromJson(Map<String, dynamic> json) => AccountModel(
         avatar: json['avatar']['gravatar']['hash'] ?? null,
         id: json['id'] ?? null,
         name: json['name'] ?? null,
         username: json['username'] ?? null,
-        token: token,
       );
 
   factory AccountModel.fromDB(Map<String, dynamic> json) => AccountModel(
@@ -37,11 +35,9 @@ class AccountModel {
         id: json['id'] ?? null,
         name: json['name'] ?? null,
         username: json['username'] ?? null,
-        token: json['token'] ?? null,
       );
 
   Map<String, dynamic> toJson() => {
-        'token': token,
         'name': name,
         'username': username,
         'avatar': avatar,

@@ -63,4 +63,29 @@ class HomeRepositoriesImpl extends HomeRepositories {
       return Left(ConnectionFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> addWatchList(
+      MovieModel model, bool watchList) async {
+    try {
+      var _r = await _remoteDS.addWatchList(model, watchList);
+      return Right(_r);
+    } on DioError catch (e) {
+      return Left(ConnectionFailure(message: errorDioState(e)));
+    } catch (e) {
+      return Left(ConnectionFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteSession() async {
+    try {
+      var _r = await _remoteDS.deleteSession();
+      return Right(_r);
+    } on DioError catch (e) {
+      return Left(ConnectionFailure(message: errorDioState(e)));
+    } catch (e) {
+      return Left(ConnectionFailure(message: e.toString()));
+    }
+  }
 }

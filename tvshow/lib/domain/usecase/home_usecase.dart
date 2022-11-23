@@ -40,3 +40,22 @@ class GetDetailTv {
     return _repo.detailTv(id);
   }
 }
+
+class AddWatchList {
+  final HomeRepositories _repo;
+  AddWatchList(this._repo);
+
+  Future<Either<Failure, void>> execute(
+      MovieModel model, bool watchList) async {
+    return _repo.addWatchList(model, watchList);
+  }
+}
+
+class DeleteSession {
+  final HomeRepositories _repo;
+  DeleteSession(this._repo);
+
+  Future<Either<Failure, void>> execute() async {
+    return _repo.deleteSession();
+  }
+}

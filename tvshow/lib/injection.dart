@@ -27,10 +27,10 @@ void init(SharedPreferences preferences) {
   locator.registerLazySingleton<AuthPreferencseDS>(
       () => AuthPreferencesDSImpl(preferences));
   // REMOTE DS
-  locator
-      .registerLazySingleton<HomeRemoteDS>(() => HomeRemoteDSImpl(locator()));
-  locator
-      .registerLazySingleton<AuthRemoteDS>(() => AuthRemoteDSImpl(locator()));
+  locator.registerLazySingleton<HomeRemoteDS>(
+      () => HomeRemoteDSImpl(locator(), locator()));
+  locator.registerLazySingleton<AuthRemoteDS>(
+      () => AuthRemoteDSImpl(locator(), locator()));
 
   // REPOSITORIES
   locator.registerLazySingleton<HomeRepositories>(
@@ -46,13 +46,15 @@ void init(SharedPreferences preferences) {
   locator.registerLazySingleton(() => CreateSessionID(locator()));
   locator.registerLazySingleton(() => SetsessionID(locator()));
   locator.registerLazySingleton(() => GetSessionID(locator()));
+  locator.registerLazySingleton(() => AddWatchList(locator()));
+  locator.registerLazySingleton(() => DeleteSession(locator()));
 
   // Cubit
   locator.registerFactory(() => StartedCubit(locator()));
-  locator.registerFactory(() => HomeCubit(locator()));
+  locator.registerFactory(() => HomeCubit(locator(), locator()));
   locator.registerFactory(() => TvpopularCubit(locator()));
   locator.registerFactory(() => DetailTvCubit(locator()));
   locator.registerFactory(() => LoginCubit(locator(), locator(), locator()));
 
-  locator.registerFactory(() => TrendinghomeCubit(locator()));
+  locator.registerFactory(() => TrendinghomeCubit(locator(), locator()));
 }

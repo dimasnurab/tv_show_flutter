@@ -9,4 +9,6 @@ abstract class HomeRepositories {
   Future<Either<Failure, List<MovieModel>>> searchQuery(String query);
   Future<Either<Failure, List<MovieModel>>> tvPopular(int page);
   Future<Either<Failure, DetailModel>> detailTv(dynamic id);
+  Future<Either<Failure, void>> deleteSession();
+  Future<Either<Failure, void>> addWatchList(MovieModel model, bool watchList);
 }
