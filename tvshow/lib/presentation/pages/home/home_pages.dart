@@ -2,12 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/route_manager.dart';
 import 'package:tvshow/config/config.dart';
 import 'package:tvshow/presentation/cubit/cubit.dart';
+import 'package:tvshow/presentation/widget/section_tvpopular.dart';
+import 'package:tvshow/shared/routers.dart';
 
 import '../../widget/widget.dart';
 
 class HomePages extends StatefulWidget {
+  final String? sessionID;
+  HomePages({this.sessionID});
+
   @override
   State<HomePages> createState() => _HomePagesState();
 }
@@ -20,6 +26,7 @@ class _HomePagesState extends State<HomePages> {
   @override
   void initState() {
     super.initState();
+    _initData();
   }
 
   @override
@@ -29,6 +36,8 @@ class _HomePagesState extends State<HomePages> {
     _focusNode.dispose();
     super.dispose();
   }
+
+  _initData() => context.read<HomeCubit>().initialData(token: widget.sessionID);
 
   _onSearchChanged(String query) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
@@ -45,7 +54,9 @@ class _HomePagesState extends State<HomePages> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        print("TOKEN : ${state.token}");
+      },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -62,6 +73,7 @@ class _HomePagesState extends State<HomePages> {
                         keyboardType: TextInputType.emailAddress,
                         maxLines: 1,
                         onchanged: _onSearchChanged,
+                        controller: _textController,
                         autoFocust: true,
                         focusNode: _focusNode,
                       ))
@@ -73,39 +85,81 @@ class _HomePagesState extends State<HomePages> {
                           color: Colors.white),
                     ),
               actions: [
-                GestureDetector(
-                  onTap: () {
-                    if (state.isModeSearch) {
-                      _focusNode.unfocus();
-                      _textController.clear();
-                      context.read<HomeCubit>().changeIsModeSearch(false);
-                      context.read<HomeCubit>().changeContentModeSearch(false);
-                    } else {
-                      _focusNode.requestFocus();
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: state.isModeSearch ? false : true,
+                      child: GestureDetector(
+                        onTap: state.token != ''
+                            ? () {}
+                            : () {
+                                Get.toNamed(RoutesApp.login)?.then((value) {
+                                  if (value != null) {
+                                    context
+                                        .read<HomeCubit>()
+                                        .setToken(value['model']);
+                                    ;
+                                  }
+                                });
+                              },
+                        child: state.token != ''
+                            ? Icon(
+                                Icons.favorite,
+                                color: ConstanColor.white,
+                                size: 24,
+                              )
+                            : Text(
+                                "Masuk",
+                                style: TextStyleApp.poppins.copyWith(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: ConstanColor.white,
+                                ),
+                              ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    GestureDetector(
+                      onTap: () {
+                        if (state.isModeSearch) {
+                          _focusNode.unfocus();
+                          _textController.clear();
+                          context.read<HomeCubit>().changeIsModeSearch(false);
+                          context
+                              .read<HomeCubit>()
+                              .changeContentModeSearch(false);
+                        } else {
+                          _focusNode.requestFocus();
 
-                      context.read<HomeCubit>().changeIsModeSearch(true);
-                    }
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 14),
-                    child: Icon(state.isModeSearch ? Icons.close : Icons.search,
-                        size: 24, color: ConstanColor.black),
-                  ),
-                )
+                          context.read<HomeCubit>().changeIsModeSearch(true);
+                        }
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(right: 14),
+                        child: Icon(
+                            state.isModeSearch ? Icons.close : Icons.search,
+                            size: 24,
+                            color: ConstanColor.white),
+                      ),
+                    )
+                  ],
+                ),
               ],
               elevation: 0.0,
               backgroundColor: Colors.transparent,
             ),
-            backgroundColor: ConstanColor.white,
+            backgroundColor: ConstanColor.black,
             extendBodyBehindAppBar: state.contentModeSearch ? false : true,
             body: state.contentModeSearch
                 ? SectionSearch(
                     state: state,
                   )
                 : ListView(
-                    padding: EdgeInsets.only(),
+                    shrinkWrap: true,
                     children: [
                       SectionTrending(),
+                      SectionTvPopular(),
                     ],
                   ),
           ),

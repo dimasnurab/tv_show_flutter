@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tvshow/config/config.dart';
-import 'package:tvshow/config/constant_color.dart';
 import 'package:tvshow/presentation/widget/cached_imagenetwork_custom.dart';
 import 'package:tvshow/shared/shared.dart';
 
@@ -129,7 +128,50 @@ class _SectionTrendingState extends State<SectionTrending> {
                                               fontWeight: FontWeight.w500,
                                               color: ConstanColor.white,
                                             ),
-                                          )
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 6, vertical: 2),
+                                            decoration: BoxDecoration(
+                                                color: ConstanColor.orange,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            child: Text(
+                                              'Lihat Detail',
+                                              style:
+                                                  TextStyleApp.poppins.copyWith(
+                                                fontSize: 14,
+                                                color: ConstanColor.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 6, vertical: 2),
+                                            decoration: BoxDecoration(
+                                                color: ConstanColor.black,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            child: Text(
+                                              'Tambah Favourite',
+                                              style:
+                                                  TextStyleApp.poppins.copyWith(
+                                                fontSize: 14,
+                                                color: ConstanColor.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       )
                                     ],

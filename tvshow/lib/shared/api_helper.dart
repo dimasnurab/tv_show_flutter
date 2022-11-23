@@ -15,10 +15,13 @@ class ApiHelper {
       responseBody: true,
     ));
   }
-  Future<dynamic> request(String method, String path,
-      {required String contentType,
-      Map<String, dynamic>? queryParams,
-      dynamic content}) async {
+  Future<dynamic> request(
+    String method,
+    String path, {
+    required String contentType,
+    Map<String, dynamic>? queryParams,
+    dynamic content,
+  }) async {
     late Response responseJson;
 
     var _data = content;

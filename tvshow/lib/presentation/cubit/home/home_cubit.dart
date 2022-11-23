@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tvshow/data/models/movie_models.dart';
+import 'package:tvshow/data/models/user_model.dart';
 import 'package:tvshow/domain/usecase/home_usecase.dart';
 
 part 'home_state.dart';
@@ -33,5 +34,22 @@ class HomeCubit extends Cubit<HomeState> {
         models: r,
       ));
     });
+  }
+
+  setToken(UserModel model) {
+    emit(state.copyWith(statusState: HomeStatusState.loading));
+    emit(state.copyWith(
+      statusState: HomeStatusState.initial,
+      token: model.requestToken,
+    ));
+  }
+
+  initialData({String? token}) async {
+    emit(state.copyWith(statusState: HomeStatusState.loading));
+    print("INITIAL DATA $token");
+    emit(state.copyWith(
+      statusState: HomeStatusState.initial,
+      token: token,
+    ));
   }
 }

@@ -1,14 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../app.dart';
 import 'injection.dart' as di;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
 
-  di.init();
+  var _pref = await SharedPreferences.getInstance();
+  di.init(_pref);
+
   runApp(TvShowApp());
 }
 

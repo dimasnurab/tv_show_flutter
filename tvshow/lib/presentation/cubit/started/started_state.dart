@@ -7,6 +7,11 @@ abstract class StartedState extends Equatable {
   List<Object?> get props => [];
 }
 
-class StartedHome extends StartedState {}
+class StartedHome extends StartedState {
+  final String? sessionID;
+  StartedHome({this.sessionID});
+  @override
+  List<Object?> get props => [sessionID];
+}
 
 class StartedUnknown extends StartedState {}

@@ -21,6 +21,7 @@ class TvShowApp extends StatelessWidget {
       footerBuilder: () => ClassicFooter(
         idleText: '',
         canLoadingText: 'Sedang memuat',
+        idleIcon: Text(''),
       ),
       child: MultiBlocProvider(
         providers: [

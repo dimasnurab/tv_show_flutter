@@ -12,6 +12,8 @@ class MovieModel {
   final dynamic releaseDate;
   final dynamic voteAverage;
   final dynamic voteCount;
+  final dynamic firstAirDate;
+  final List<String> originCountry;
 
   MovieModel({
     this.adult,
@@ -27,9 +29,12 @@ class MovieModel {
     this.title,
     this.voteAverage,
     this.voteCount,
+    this.firstAirDate,
+    this.originCountry = const <String>[],
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
+  factory MovieModel.fromJson(Map<String, dynamic> json) {
+    return MovieModel(
         adult: json['adult'] ?? false,
         backdropPath: json['backdrop_path'] ?? null,
         id: json['id'] ?? null,
@@ -43,5 +48,15 @@ class MovieModel {
         releaseDate: json['release_date'] ?? null,
         voteAverage: json['vote_average'] ?? null,
         voteCount: json['vote_count'] ?? null,
-      );
+        firstAirDate: json['first_air_date'] ?? null,
+        originCountry: json['origin_country'] != null
+            ? List.from(json['origin_country'])
+                .map(
+                  (e) => e as String,
+                )
+                .toList()
+            : []);
+  }
+
+  
 }

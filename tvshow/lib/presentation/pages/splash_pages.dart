@@ -26,10 +26,10 @@ class _SplashPagesState extends State<SplashPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ConstanColor.blueCloud,
+      backgroundColor: ConstanColor.black,
       body: Center(
         child: Text(
-          "TV & Movies",
+          "NetFlox",
           style: TextStyleApp.poppins.copyWith(
             fontSize: 18,
             color: ConstanColor.white,

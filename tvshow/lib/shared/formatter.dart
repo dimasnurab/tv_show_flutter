@@ -11,4 +11,15 @@ class Formatter {
       return "-";
     }
   }
+
+  static String ddMMMMYYYY({dynamic value}) {
+    if (value != null) {
+      DateTime _parse = DateTime.parse(value.toString());
+      var format = DateFormat("dd MMMM yyyy", "id");
+
+      return format.format(_parse);
+    } else {
+      return "-";
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tvshow/shared/shared.dart';
 
 import '../../config/config.dart';
 import '../cubit/cubit.dart';
@@ -57,7 +58,27 @@ class SectionSearch extends StatelessWidget {
                               color: ConstanColor.white,
                               fontWeight: FontWeight.bold,
                             ),
-                          )
+                          ),
+                          Text(
+                            Formatter.ddMMMMYYYY(
+                                value: state.models[index].firstAirDate),
+                            style: TextStyleApp.poppins.copyWith(
+                                fontSize: 11, color: ConstanColor.white),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Rating ${state.models[index].voteAverage != null ? state.models[index].voteAverage.round() : 0}',
+                                style: TextStyleApp.poppins.copyWith(
+                                    fontSize: 11, color: ConstanColor.white),
+                              ),
+                              Text(
+                                ' || Suka ${state.models[index].voteCount != null ? state.models[index].voteCount.round() : 0}',
+                                style: TextStyleApp.poppins.copyWith(
+                                    fontSize: 11, color: ConstanColor.white),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     )

@@ -9,12 +9,14 @@ environment:
   sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
-  cupertino_icons: ^1.0.2
-  equatable: ^2.0.3
   bloc: ^8.0.3
-  dartz: ^0.10.1
   cached_network_image: ^3.2.0
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
   dio: ^4.0.6
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
@@ -24,9 +26,9 @@ dependencies:
   pretty_dio_logger: ^1.1.1
   pull_to_refresh: ^2.0.0
   responsive_framework: ^0.1.9
+  shared_preferences: ^2.0.15
   shimmer: ^2.0.0
-  flutter:
-    sdk: flutter
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:
@@ -46,7 +48,7 @@ flutter:
         - asset: assets/font/playfair/PlayfairDisplay-SemiBold.ttf
           weight: 600
         - asset: assets/font/playfair/PlayfairDisplay-Bold.ttf
-          weight: 700 
+          weight: 700
     - family: Poppins
       fonts:
         - asset: assets/font/Poppins/Poppins-Regular.ttf
@@ -60,4 +62,3 @@ flutter:
           weight: 600
         - asset: assets/font/Poppins/Poppins-Bold.ttf
           weight: 700
-

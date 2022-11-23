@@ -9,17 +9,20 @@ class HomeState extends Equatable {
     this.isModeSearch = false,
     this.statusState = HomeStatusState.initial,
     this.models = const [],
+    this.token = '',
   });
   final bool refreshObject;
   final bool isModeSearch;
   final bool contentModeSearch;
   final HomeStatusState statusState;
   final List<MovieModel> models;
+  final String token;
 
   HomeState copyWith(
           {bool? refreshObject,
           bool? isModeSearch,
           List<MovieModel>? models,
+          String? token,
           bool? contentModeSearch,
           HomeStatusState? statusState}) =>
       HomeState(
@@ -28,6 +31,7 @@ class HomeState extends Equatable {
         contentModeSearch: contentModeSearch ?? this.contentModeSearch,
         statusState: statusState ?? this.statusState,
         models: models ?? this.models,
+        token: token ?? this.token,
       );
 
   @override
@@ -37,5 +41,6 @@ class HomeState extends Equatable {
         contentModeSearch,
         statusState,
         models,
+        token
       ];
 }

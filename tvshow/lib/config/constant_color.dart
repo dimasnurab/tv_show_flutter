@@ -5,6 +5,7 @@ class ConstanColor {
   static const Color white = Color(0xffF9F9F9);
   static const Color black = Color(0xff282A3A);
   static const Color grey = Color(0xff758a9a);
+  static const Color orange = Color(0xffF49D1A);
 
   static const BoxShadow kShadowBackground = BoxShadow(
     color: Color.fromRGBO(0, 0, 0, 0.1),
